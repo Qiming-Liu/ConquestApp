@@ -1,0 +1,27 @@
+name: Android Build
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Test and Build React
+        run: |
+          cd react
+          yarn
+          yarn test
+          yarn build
+      - name: Setup Cordova
+        uses: oxr463/setup-cordova@0.0.3
+        with:
+        exec: |
+          cordova platform add android && \
+          cordova build --no-telemetry && \
+          cp "$(find . -name '*.apk')" .

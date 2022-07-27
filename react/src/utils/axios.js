@@ -8,7 +8,6 @@ const backendHttpInstance = () => {
 
   axiosInstance.interceptors.response.use(
     (config) => {
-      // update jwt
       const { authorization } = config.headers;
       console.log(authorization);
 
@@ -23,14 +22,7 @@ const backendHttpInstance = () => {
   return axiosInstance;
 };
 
-const http = (endpoint, config) => {
+export const http = (endpoint, config) => {
   const axiosInstance = backendHttpInstance();
   return axiosInstance(endpoint, { ...config });
 };
-
-export const nextapi = (endpoint, config) => {
-  const axiosInstance = axios.create();
-  return axiosInstance(endpoint, { ...config });
-};
-
-export default http;

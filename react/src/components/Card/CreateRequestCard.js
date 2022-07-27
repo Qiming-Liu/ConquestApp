@@ -33,11 +33,11 @@ export default function CreateRequestCard() {
       createRequest(createRequestBody(RequestDetail, RequestorName, OrganisationUnitID))
         .then((response) => {
           setLoading(false);
-          hotToast('success', `Login Success: ${response.data.message}`);
+          hotToast('success', `Create Successed! Request ID: ${response.data}`);
         })
         .catch((error) => {
           setLoading(false);
-          hotToast('error', `Something wrong: ${error}`);
+          hotToast('error', `Something wrong: ${error.message}`);
         });
     },
   });
@@ -87,7 +87,7 @@ export default function CreateRequestCard() {
                     value={formik.values.OrganisationUnitID}
                     variant="outlined"
                   />
-                  <Grid sx={{ py: 2 }}>
+                  <Grid sx={{ py: 3 }}>
                     <LoadingButton
                       loading={isLoading}
                       color="primary"

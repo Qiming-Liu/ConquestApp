@@ -6,7 +6,7 @@ import 'cropperjs/dist/cropper.css';
 const ImgCropper = forwardRef((props, ref) => {
   // eslint-disable-next-line react/prop-types
   const { aspectRatio, lockAspectRatio, src } = props;
-  const cropperRef = useRef < HTMLImageElement > null;
+  const cropperRef = useRef();
   const [cropper, setCropper] = useState();
 
   useImperativeHandle(ref, () => ({

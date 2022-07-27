@@ -1,4 +1,4 @@
-import http from '../utils/axios';
+import { http } from '../utils/axios';
 
 export const createRequestBody = (RequestDetail, RequestorName, OrganisationUnitID) => {
   return {
@@ -13,4 +13,5 @@ export const createRequestBody = (RequestDetail, RequestorName, OrganisationUnit
   };
 };
 
-export const createRequest = (requestBody) => http(`/api/requests/create_request`, { method: 'POST', data: requestBody });
+export const createRequest = (requestBody) =>
+  http(`/api/requests/create_request`, { method: 'POST', data: requestBody });

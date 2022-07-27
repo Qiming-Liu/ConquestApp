@@ -1,16 +1,69 @@
-import http from '../utils/axios';
+import { http } from '../utils/axios';
 
-export const addDocumentBody = (RequestDetail, RequestorName, OrganisationUnitID) => {
+export const addDocumentBody = (FileName, DocumentDescription, ContentType, RequestID) => {
   return {
-    ChangeSet: {
-      Changes: ['RequestDetail', 'RequestorName', 'OrganisationUnitID'],
-      Updated: {
-        RequestDetail,
-        RequestorName,
-        OrganisationUnitID,
-      },
+    Address: `blob://developolisdocuments/${FileName}`,
+    ContentType,
+    DocumentDescription,
+    CreateTime: new Date(),
+    ObjectKey: {
+      int32Value: RequestID,
+      objectType: 'ObjectType_Request',
     },
   };
 };
 
 export const addDocument = (requestBody) => http(`/api/documents/add_document`, { method: 'POST', data: requestBody });
+
+export const uploadBlob = (uploadUrl, uploadMethod, contentType, imgBlob) => {
+  // const data = new FormData();
+  // data.append('file', imgBlob);
+
+  console.log([
+    uploadUrl,
+    {
+      method: uploadMethod,
+      headers: {
+        'Content-Type': contentType,
+        'Access-Control-Allow-Origin': '*',
+        'x-ms-blob-type': 'BlockBlob',
+      },
+      body: imgBlob,
+    },
+  ]);
+
+  return fetch(uploadUrl, {
+    method: uploadMethod,
+    headers: {
+      'Content-Type': contentType,
+      'Access-Control-Allow-Origin': '*',
+      'x-ms-blob-type': 'BlockBlob',
+    },
+    body: imgBlob,
+  });
+};
+
+export const getDocumentListBody = (RequestID) => {
+  return {
+    ObjectKey: {
+      int32Value: RequestID,
+      objectType: 'ObjectType_Request',
+    },
+  };
+};
+
+export const getDocumentList = (requestBody) => http(`/api/documents/list`, { method: 'POST', data: requestBody });
+
+export const getDocumentThumbnailBody = (RequestID, DocumentID) => {
+  return {
+    ObjectKey: {
+      int32Value: RequestID,
+      objectType: 'ObjectType_Request',
+    },
+    DocumentID,
+    XThumbnailParameter: 'medium',
+  };
+};
+
+export const getDocumentThumbnail = (requestBody) =>
+  http(`/api/documents/generate_document_link`, { method: 'POST', data: requestBody });

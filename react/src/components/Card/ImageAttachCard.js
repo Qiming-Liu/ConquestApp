@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 // @mui
 import React, { useState } from 'react';
-import { Button, Card, CardHeader, CardContent, TextField, Grid } from '@mui/material';
+import { Box, Card, CardHeader, CardContent, TextField, Typography, Grid } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 // components
@@ -13,43 +14,60 @@ import * as Yup from 'yup';
 import hotToast from '../../utils/hotToast';
 
 // services
-import { createRequestBody, createRequest } from '../../services/Request';
+import { addDocument, addDocumentBody, uploadBlob } from '../../services/Document';
 
 // ----------------------------------------------------------------------
 
-const handleCropImg = async () => {
-  // setCurrentProfileImg(base64);
-  // const file = await (await fetch(base64)).blob();
-  // const { data: img } = await upload(file).catch((error) => {
-  //   hotToast('error', `Something wrong: ${error}`);
-  // });
-};
-
 export default function ImageAttachCard() {
+  const [image, setImage] = useState(undefined);
+  const [imageBlob, setImageBlob] = useState(undefined);
   const [isLoading, setLoading] = useState(false);
+
+  const handleCropImg = async (base64) => {
+    setImage(base64);
+    console.log(base64);
+    const file = await (await fetch(base64)).blob();
+    setImageBlob(file);
+  };
 
   const formik = useFormik({
     initialValues: {
-      RequestDetail: 'Request from my app',
-      RequestorName: 'Alan Liu',
-      OrganisationUnitID: 13,
+      RequestID: '67',
     },
     validationSchema: Yup.object({
-      RequestDetail: Yup.string().required('Request Detail is required'),
-      RequestorName: Yup.string().required('Requestor Name is required'),
-      OrganisationUnitID: Yup.number().max(2, 'Must be 1 or 2 digits long').required('OrganisationUnitID is required'),
+      RequestID: Yup.number().required('Request ID is required'),
     }),
     onSubmit: (values) => {
-      const { RequestDetail, RequestorName, OrganisationUnitID } = values;
+      if (!image) {
+        hotToast('error', 'Please select an image');
+        return;
+      }
       setLoading(true);
-      createRequest(createRequestBody(RequestDetail, RequestorName, OrganisationUnitID))
+
+      const FileName = `${values.RequestID}_${Date.now()}.png`;
+      const DocumentDescription = FileName;
+      const ContentType = 'image/png';
+
+      // get upload url
+      addDocument(addDocumentBody(FileName, DocumentDescription, ContentType, values.RequestID))
         .then((response) => {
-          setLoading(false);
-          hotToast('success', `Login Success: ${response.data.message}`);
+          // upload via url
+          // It's UploadUri here not UploadUrl
+          uploadBlob(response.data.UploadUri, response.data.UploadMethod, ContentType, imageBlob)
+            .then((response) => {
+              setLoading(false);
+              console.log(response);
+              hotToast('success', `Attach Successed!`);
+            })
+            .catch((error) => {
+              setLoading(false);
+              console.log(error);
+              hotToast('error', `Attach Failed: ${error.message}`);
+            });
         })
         .catch((error) => {
           setLoading(false);
-          hotToast('error', `Something wrong: ${error}`);
+          hotToast('error', `Something wrong: ${error.message}`);
         });
     },
   });
@@ -61,44 +79,51 @@ export default function ImageAttachCard() {
         <CardContent>
           <form onSubmit={formik.handleSubmit}>
             <TextField
-              error={Boolean(formik.touched.RequestDetail && formik.errors.RequestDetail)}
+              error={Boolean(formik.touched.RequestID && formik.errors.RequestID)}
               fullWidth
-              helperText={formik.touched.RequestDetail && formik.errors.RequestDetail}
-              label="Request Detail"
+              helperText={formik.touched.RequestID && formik.errors.RequestID}
+              label="Request ID"
               margin="normal"
-              name="RequestDetail"
+              name="RequestID"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              type="string"
-              value={formik.values.RequestDetail}
+              type="number"
+              value={formik.values.RequestID}
               variant="outlined"
             />
-            <ImgDropzone accept="image/jpg,image/png, image/jpeg" afterCrop={handleCropImg} aspectRatio={2.5}>
-              <Button
-                startIcon={<Iconify icon="eva:menu-2-fill" />}
-                sx={{
-                  backgroundColor: '#3e3e3f',
-                  bottom: {
-                    lg: 24,
-                    xs: 'auto',
-                  },
-                  color: 'common.white',
-                  position: 'absolute',
-                  right: 24,
-                  top: {
-                    lg: 'auto',
-                    xs: 24,
-                  },
-                  visibility: 'hidden',
-                  '&:hover': {
-                    backgroundColor: '#3e3e3f',
-                  },
-                }}
-                variant="contained"
-              >
-                Change Cover
-              </Button>
-            </ImgDropzone>
+            {image && (
+              <Box sx={{ m: 2 }}>
+                <img src={image} />
+              </Box>
+            )}
+            <Box sx={{ mt: 2 }}>
+              <ImgDropzone accept="image/png" afterCrop={handleCropImg} lockAspectRatio={false}>
+                <Box
+                  sx={{
+                    alignItems: 'center',
+                    border: 1,
+                    borderRadius: 1,
+                    borderStyle: 'dashed',
+                    borderColor: 'divider',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    outline: 'none',
+                    p: 4.5,
+                    '&:hover': {
+                      backgroundColor: 'action.hover',
+                      cursor: 'pointer',
+                      opacity: 0.5,
+                    },
+                  }}
+                >
+                  <Iconify icon="carbon:cloud-upload" width={100} height={80} />
+                  <Box sx={{ p: 2 }}>
+                    <Typography variant="h6">Upload Image</Typography>
+                  </Box>
+                </Box>
+              </ImgDropzone>
+            </Box>
             <Grid sx={{ py: 2 }}>
               <LoadingButton
                 loading={isLoading}
