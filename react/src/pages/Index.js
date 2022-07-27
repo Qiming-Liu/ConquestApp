@@ -1,14 +1,15 @@
-/* eslint-disable no-undef */
 // @mui
-// import { useTheme } from '@mui/material/styles';
+import React from 'react';
 import { Grid, Container, Typography } from '@mui/material';
+
 // components
 import Page from '../components/Page';
+import CreateRequestCard from '../components/Card/CreateRequestCard';
+import ImageAttachCard from '../components/Card/ImageAttachCard';
 
 // ----------------------------------------------------------------------
 
 export default function Index() {
-  console.log(process.env.REACT_APP_CONQUEST_TOKEN);
 
   return (
     <Page title="Index">
@@ -18,7 +19,8 @@ export default function Index() {
         </Typography>
 
         <Grid container spacing={3}>
-          
+          <CreateRequestCard />
+          <ImageAttachCard />
         </Grid>
       </Container>
     </Page>
