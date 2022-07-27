@@ -1,14 +1,14 @@
+/* eslint-disable no-undef */
 // @mui
 // import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 // components
 import Page from '../components/Page';
-// import Iconify from '../components/Iconify';
 
 // ----------------------------------------------------------------------
 
 export default function Index() {
-  // const theme = useTheme();
+  console.log(process.env.REACT_APP_CONQUEST_TOKEN);
 
   return (
     <Page title="Index">
