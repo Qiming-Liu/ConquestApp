@@ -12,12 +12,18 @@ describe('creaate request form', () => {
   it('renders current label', () => {
     const { debug } = render(<CreateRequestCard />);
 
-    // const RequestDetail = getByLabel("Request Detail");
-    // const RequestorName = getByLabel("Request Name");
-    // const OrganisationUnitID = getByLabel("Organisation Unit ID");
+    const RequestDetail = screen.getByLabelText('Request Detail');
+    // const RequestorName = screen.getByLabel('Request Name');
+    // const OrganisationUnitID = screen.getByLabel('Organisation Unit ID');
     const submitButton = screen.getByText('Submit');
 
+    
+    // fireEvent.change(RequestorName, { target: { value: '' } });
+    // fireEvent.change(OrganisationUnitID, { target: { value: '' } });
+
+    // await
     act(() => {
+      fireEvent.change(RequestDetail, { target: { value: '' } });
       fireEvent.click(submitButton);
     });
 
