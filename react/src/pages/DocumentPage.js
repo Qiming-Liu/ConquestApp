@@ -8,11 +8,10 @@ import ListDocument from '../components/Card/ListDocument';
 // ----------------------------------------------------------------------
 
 export default function DocumentPage() {
-
   return (
     <Page title="DocumentPage">
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h4" sx={{ mx: 1, mb: 3 }}>
           Here you can list all the documents in a request.
         </Typography>
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // @mui
 import React, { useState } from 'react';
-import { Box, Card, CardHeader, CardContent, TextField, Typography, Grid } from '@mui/material';
+import { Button, Zoom, Card, CardHeader, CardContent, TextField, Typography, Grid, Divider } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 // form
@@ -11,6 +11,7 @@ import hotToast from '../../utils/hotToast';
 
 // services
 import {
+  removeDocument,
   getDocumentList,
   getDocumentListBody,
   getDocumentThumbnail,
@@ -22,6 +23,7 @@ import {
 export default function ListDocument() {
   const [imageList, setImageList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [did, setDid] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -38,26 +40,29 @@ export default function ListDocument() {
           setImageList([]);
 
           const DocumentList = response.data.documents;
+          if (DocumentList.length === 0) {
+            setDid(true);
+          }
           DocumentList.forEach((document, index) => {
             getDocumentThumbnail(getDocumentThumbnailBody(values.RequestID, document.DocumentID))
               .then((response) => {
                 setImageList((oldArray) => [
                   ...oldArray,
                   {
-                    DocumentID: DocumentList[index].DocumentID,
-                    DocumentDescription: DocumentList[index].DocumentDescription,
+                    RequestID: values.RequestID,
+                    Document: DocumentList[index],
                     Link: response.data.Link,
                   },
                 ]);
+                setDid(true);
               })
               .catch((error) => {
-                // console.log(['the error',error]);
                 if (error.response.data.code === 3) {
                   setImageList((oldArray) => [
                     ...oldArray,
                     {
-                      DocumentID: DocumentList[index].DocumentID,
-                      DocumentDescription: DocumentList[index].DocumentDescription,
+                      RequestID: values.RequestID,
+                      Document: DocumentList[index],
                       Link: '',
                     },
                   ]);
@@ -109,21 +114,67 @@ export default function ListDocument() {
           </form>
         </CardContent>
       </Card>
-      {imageList.length > 0 ? (
-        <>
-          {imageList.map((image) => (
-            <Card key={image.Link} sx={{ mt: 2 }}>
-              <CardHeader title={`${image.DocumentID}: ${image.DocumentDescription}`} />
-              <CardContent>
-                <img src={image.Link} alt="image" height={200} />
-              </CardContent>
-            </Card>
-          ))}
-        </>
-      ) : (
-        <Typography variant="h4" sx={{ mt: 3 }}>
-          No Document
-        </Typography>
+      {did && (
+        <div>
+          <Divider sx={{ mt: 2 }} />
+          {imageList.length > 0 ? (
+            <>
+              {[]
+                .concat(imageList)
+                .sort((a, b) => a.Document.Order - b.Document.Order)
+                .map((image) => (
+                  <Zoom in key={image.Document.DocumentID}>
+                    <Card key={image.Link} sx={{ mt: 2 }}>
+                      <CardHeader title={image.Document.DocumentDescription} />
+                      <CardContent>
+                        <img
+                          alt={image.Document.DocumentID}
+                          src={image.Link}
+                          style={{
+                            display: 'block',
+                            margin: '0 auto',
+                            maxWidth: '90%',
+                            maxHeight: '90%',
+                          }}
+                        />
+
+                        <Typography variant="h5" sx={{ mt: 2 }}>
+                          CreatedBy: {image.Document.CreatedBy}
+                        </Typography>
+                        <Typography variant="h5">DocumentID: {image.Document.DocumentID}</Typography>
+                        <Typography variant="h5">Order: {image.Document.Order}</Typography>
+                        <Button
+                          sx={{ mt: 2 }}
+                          color="primary"
+                          fullWidth
+                          size="large"
+                          variant="contained"
+                          onClick={() => {
+                            removeDocument(image.RequestID, image.Document.DocumentID)
+                              .then(() => {
+                                hotToast('success', 'Document removed');
+                                setImageList((oldArray) =>
+                                  oldArray.filter((item) => item.Document.DocumentID !== image.Document.DocumentID)
+                                );
+                              })
+                              .catch((error) => {
+                                hotToast('error', `Something wrong: ${error.message}`);
+                              });
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </Zoom>
+                ))}
+            </>
+          ) : (
+            <Typography variant="h5" sx={{ mx: 1, mt: 2, textAlign: 'center' }}>
+              No Documents.
+            </Typography>
+          )}
+        </div>
       )}
     </Grid>
   );

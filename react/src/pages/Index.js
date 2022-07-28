@@ -10,12 +10,17 @@ import ImageAttachCard from '../components/Card/ImageAttachCard';
 // ----------------------------------------------------------------------
 
 export default function Index() {
-
   return (
     <Page title="Index">
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h4" sx={{ mx: 1, mt: 3 }}>
           Hi, Welcome to ConquestApp!
+        </Typography>
+        <Typography variant="h4" sx={{ mx: 1, mt: 3 }}>
+          Here you can create a request or attach a image to the request.
+        </Typography>
+        <Typography variant="h4" sx={{ mx: 1, mt: 1, mb: 3 }}>
+          In the navbar on the left, you can view all documents of a request.
         </Typography>
 
         <Grid container spacing={3}>

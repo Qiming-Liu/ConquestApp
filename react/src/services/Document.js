@@ -15,6 +15,18 @@ export const addDocumentBody = (FileName, DocumentDescription, ContentType, Requ
 
 export const addDocument = (requestBody) => http(`/api/documents/add_document`, { method: 'POST', data: requestBody });
 
+export const removeDocument = (RequestID, DocumentID) =>
+  http(`/api/documents/remove_document`, {
+    method: 'POST',
+    data: {
+      DocumentID,
+      ObjectKey: {
+        int32Value: RequestID,
+        objectType: 'ObjectType_Request',
+      },
+    },
+  });
+
 export const uploadBlob = (uploadUrl, uploadMethod, contentType, imgBlob) => {
   // const data = new FormData();
   // data.append('file', imgBlob);
