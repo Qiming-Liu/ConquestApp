@@ -4,9 +4,7 @@ import { Grid, Container, Typography } from '@mui/material';
 
 // components
 import Page from '../components/Page';
-import CreateRequestCard from '../components/Card/CreateRequestCard';
-import ImageAttachCard from '../components/Card/ImageAttachCard';
-
+import ListDocument from '../components/Card/ListDocument';
 // ----------------------------------------------------------------------
 
 export default function DocumentPage() {
@@ -15,12 +13,11 @@ export default function DocumentPage() {
     <Page title="DocumentPage">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome to ConquestApp!
+          Here you can list all the documents in a request.
         </Typography>
 
         <Grid container spacing={3}>
-          <CreateRequestCard />
-          <ImageAttachCard />
+          <ListDocument />
         </Grid>
       </Container>
     </Page>

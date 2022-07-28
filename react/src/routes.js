@@ -1,18 +1,20 @@
-import { useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
 // layouts
 import Layout from './layouts';
 import Index from './pages/Index';
+import DocumentPage from './pages/DocumentPage';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   return useRoutes([
     {
-      path: '*',
+      path: '/',
       element: <Layout />,
       children: [
-        { path: '/document', element: <DocumentPage /> },
-        { path: '*', element: <Index /> },
+        { path: '/', element: <Navigate to="/home" /> },
+        { path: 'document', element: <DocumentPage /> },
+        { path: 'home', element: <Index /> },
       ],
     },
   ]);

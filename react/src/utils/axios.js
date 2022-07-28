@@ -8,16 +8,13 @@ const backendHttpInstance = () => {
 
   axiosInstance.interceptors.response.use(
     (config) => {
-      const { authorization } = config.headers;
-      console.log(authorization);
-
       return config;
     },
     (error) => {
       error && console.log(error.response);
 
       return Promise.reject(error);
-    },
+    }
   );
   return axiosInstance;
 };
