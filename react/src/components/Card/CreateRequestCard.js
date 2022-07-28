@@ -44,64 +44,64 @@ export default function CreateRequestCard() {
 
   return (
     <Grid item xs={12} md={12} lg={6}>
-            <Card>
-              <CardHeader title={'Create Request'} />
-              <CardContent>
-                <form onSubmit={formik.handleSubmit}>
-                  <TextField
-                    error={Boolean(formik.touched.RequestDetail && formik.errors.RequestDetail)}
-                    fullWidth
-                    helperText={formik.touched.RequestDetail && formik.errors.RequestDetail}
-                    label="Request Detail"
-                    margin="normal"
-                    name="RequestDetail"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="string"
-                    value={formik.values.RequestDetail}
-                    variant="outlined"
-                  />
-                  <TextField
-                    error={Boolean(formik.touched.RequestorName && formik.errors.RequestorName)}
-                    fullWidth
-                    helperText={formik.touched.RequestorName && formik.errors.RequestorName}
-                    label="Requestor Name"
-                    margin="normal"
-                    name="RequestorName"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="string"
-                    value={formik.values.RequestorName}
-                    variant="outlined"
-                  />
-                  <TextField
-                    error={Boolean(formik.touched.OrganisationUnitID && formik.errors.OrganisationUnitID)}
-                    fullWidth
-                    helperText={formik.touched.OrganisationUnitID && formik.errors.OrganisationUnitID}
-                    label="Organisation Unit ID"
-                    margin="normal"
-                    name="OrganisationUnitID"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="number"
-                    value={formik.values.OrganisationUnitID}
-                    variant="outlined"
-                  />
-                  <Grid sx={{ py: 3 }}>
-                    <LoadingButton
-                      loading={isLoading}
-                      color="primary"
-                      fullWidth
-                      size="large"
-                      type="submit"
-                      variant="contained"
-                    >
-                      Submit
-                    </LoadingButton>
-                  </Grid>
-                </form>
-              </CardContent>
-            </Card>
-          </Grid>
+      <Card>
+        <CardHeader title={'Create Request'} />
+        <CardContent>
+          <form onSubmit={formik.handleSubmit}>
+            <TextField
+              error={Boolean(formik.touched.RequestDetail && formik.errors.RequestDetail)}
+              fullWidth
+              helperText={formik.touched.RequestDetail && formik.errors.RequestDetail}
+              label="Request Detail"
+              margin="normal"
+              name="RequestDetail"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="string"
+              value={formik.values.RequestDetail}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.RequestorName && formik.errors.RequestorName)}
+              fullWidth
+              helperText={formik.touched.RequestorName && formik.errors.RequestorName}
+              label="Requestor Name"
+              margin="normal"
+              name="RequestorName"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="string"
+              value={formik.values.RequestorName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.OrganisationUnitID && formik.errors.OrganisationUnitID)}
+              fullWidth
+              helperText={formik.touched.OrganisationUnitID && formik.errors.OrganisationUnitID}
+              label="Organisation Unit ID"
+              margin="normal"
+              name="OrganisationUnitID"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="number"
+              value={formik.values.OrganisationUnitID}
+              variant="outlined"
+            />
+            <Grid sx={{ py: 3 }}>
+              <LoadingButton
+                loading={isLoading}
+                color="primary"
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Submit
+              </LoadingButton>
+            </Grid>
+          </form>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 }
