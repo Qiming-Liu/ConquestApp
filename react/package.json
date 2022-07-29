@@ -91,10 +91,12 @@
     ],
     "collectCoverageFrom": [
       "**/components/**",
-      "**/pages/**"
+      "**/services/**",
+      "**/pages/**",
+      "**/utils/**"
     ],
     "moduleNameMapper": {
-      "\\.(css)$": "<rootDir>/src/mock/styleMock.js"
+      "\\.(css)$": "<rootDir>/mock/styleMock.js"
     }
   },
   "babel": {

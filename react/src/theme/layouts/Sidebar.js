@@ -5,13 +5,13 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
 // mock
-import account from '../mock/accountMock';
+import account from '../../../mock/accountMock';
 // hooks
-import useResponsive from '../hooks/useResponsive';
+import useResponsive from '../../hooks/useResponsive';
 // components
-import Logo from '../theme/MinimalComponent/Logo';
-import Scrollbar from '../theme/MinimalComponent/Scrollbar';
-import NavSection from '../theme/MinimalComponent/NavSection';
+import Logo from '../MinimalComponent/Logo';
+import Scrollbar from '../MinimalComponent/Scrollbar';
+import NavSection from '../MinimalComponent/NavSection';
 //
 import navConfig from './NavConfig';
 

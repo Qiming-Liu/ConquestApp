@@ -1,5 +1,5 @@
 // component
-import Iconify from '../theme/MinimalComponent/Iconify';
+import Iconify from '../MinimalComponent/Iconify';
 
 // ----------------------------------------------------------------------
 
@@ -8,12 +8,12 @@ const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 const navConfig = [
   {
     title: 'home',
-    path: '/home',
+    path: './home',
     icon: getIcon('bxs:home'),
   },
   {
     title: 'document',
-    path: '/document',
+    path: './document',
     icon: getIcon('clarity:document-solid'),
   },
 ];

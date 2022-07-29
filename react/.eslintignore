@@ -1,6 +1,7 @@
 // .eslintignore
 build/*
 public/*
+mock/*
 src/service-worker.js
 src/serviceWorkerRegistration.js
 src/setupTests.js

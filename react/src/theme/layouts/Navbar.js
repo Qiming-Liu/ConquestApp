@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
 // components
-import Iconify from '../theme/MinimalComponent/Iconify';
+import Iconify from '../MinimalComponent/Iconify';
 //
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';

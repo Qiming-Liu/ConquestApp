@@ -17,6 +17,7 @@ describe('ImageAttachCard', () => {
 
     const RequestID = screen.getByLabelText('Request ID');
     const attachButton = screen.getByText('Attach');
+    const spy = jest.spyOn(DocumentServices, 'addDocument');
 
     await act(() => {
       fireEvent.change(RequestID, { target: { value: '' } });
@@ -24,8 +25,6 @@ describe('ImageAttachCard', () => {
     });
 
     expect(screen.getByText('Request ID is required')).toBeInTheDocument();
-
-    const spy = jest.spyOn(DocumentServices, 'addDocument');
 
     await act(() => {
       fireEvent.change(RequestID, { target: { value: '67' } });
@@ -41,8 +40,9 @@ describe('ImageAttachCard', () => {
   });
 
   it('should ok to upload image', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ImageAttachCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/add_document').reply(200, {
       Document: {
         ObjectKey: {
@@ -64,7 +64,6 @@ describe('ImageAttachCard', () => {
         'x-ms-blob-type': 'BlockBlob',
       },
     });
-
     axiosMock
       .onPut(
         'https://developolisstorage.blob.core.windows.net/developoliscontainer/image.png?sv=2019-07-07&sr=b&sig=9h%2F4ZXQjfu0hq45Wk4j72hPVCkdfk6Mq%2FS5F5PU0eY8%3D&st=2022-07-29T08%3A45%3A54Z&se=2022-07-30T08%3A50%3A54Z&sp=rw&rscd=attachment%3B%20filename%3Dimage.png'
@@ -72,8 +71,6 @@ describe('ImageAttachCard', () => {
       .reply(200, {});
 
     const image = new File(['image file'], 'image.png', { type: 'image/png' });
-
-    render(<ImageAttachCard />);
 
     const ImgDropzone = screen.getByTestId('img-dropzone-parent').childNodes[0];
     const attachButton = screen.getByText('Attach');
@@ -114,11 +111,11 @@ describe('ImageAttachCard', () => {
   });
 
   it('should handel error', async () => {
+    render(<ImageAttachCard />);
+
     new MockAdapter(axios);
 
     const image = new File(['image file'], 'image.png', { type: 'image/png' });
-
-    render(<ImageAttachCard />);
 
     const ImgDropzone = screen.getByTestId('img-dropzone-parent').childNodes[0];
     const attachButton = screen.getByText('Attach');

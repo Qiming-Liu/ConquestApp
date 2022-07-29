@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 
-const hotToast = (status, text, promise) => {
+const hotToast = (status, text) => {
   switch (status) {
     case 'success':
       toast.success(text, {
@@ -24,24 +24,6 @@ const hotToast = (status, text, promise) => {
         },
       });
       break;
-    }
-    case 'promise': {
-      toast.promise(
-        promise,
-        {
-          loading: 'Saving...',
-          success: () => `Settings saved!`,
-          error: () => `Could not save.`,
-        },
-        {
-          style: {
-            padding: '20px',
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
-          },
-        },
-      );
     }
   }
 };

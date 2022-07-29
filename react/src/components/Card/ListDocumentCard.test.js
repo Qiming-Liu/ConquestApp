@@ -26,8 +26,9 @@ describe('ListDocumentCard', () => {
   });
 
   it('should show response when request successed', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ListDocumentCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/list').reply(200, {
       documents: [
         {
@@ -46,15 +47,12 @@ describe('ListDocumentCard', () => {
         },
       ],
     });
-
     axiosMock.onPost('/api/documents/generate_document_link').reply(200, {
       LinkExpireTime: '2022-07-29T03:45:49.590126900Z',
       Link: 'https://developolisstorage.blob.core.windows.net/developolisthumbnails/res/medium/1658925144.jpeg?sv=2019-07-07&sr=b&sig=ivJLiUThB9HY3iNE6XaePJjcWnd7D6EwYwe%2Fi%2FqvSC4%3D&st=2022-07-29T02%3A41%3A49Z&se=2022-07-30T02%3A46%3A49Z&sp=r&rscd=attachment%3B%20filename%3D1658925144.jpeg',
     });
-
     axiosMock.onPost('/api/documents/remove_document').reply(200, {});
 
-    render(<ListDocumentCard />);
     const listButton = screen.getByText('List');
 
     act(() => {
@@ -86,9 +84,10 @@ describe('ListDocumentCard', () => {
   });
 
   it('should show error when request failed', async () => {
+    render(<ListDocumentCard />);
+
     new MockAdapter(axios);
 
-    render(<ListDocumentCard />);
     const listButton = screen.getByText('List');
 
     act(() => {
@@ -104,11 +103,11 @@ describe('ListDocumentCard', () => {
   });
 
   it('should show no documents', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ListDocumentCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/list').reply(200, {});
 
-    render(<ListDocumentCard />);
     const listButton = screen.getByText('List');
 
     act(() => {
@@ -124,8 +123,9 @@ describe('ListDocumentCard', () => {
   });
 
   it('should handle error when image error code 3', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ListDocumentCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/list').reply(200, {
       documents: [
         {
@@ -144,12 +144,10 @@ describe('ListDocumentCard', () => {
         },
       ],
     });
-
     axiosMock.onPost('/api/documents/generate_document_link').reply(400, {
       code: 3,
     });
 
-    render(<ListDocumentCard />);
     const listButton = screen.getByText('List');
 
     act(() => {
@@ -165,8 +163,9 @@ describe('ListDocumentCard', () => {
   });
 
   it('should handle error when image error code not 3', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ListDocumentCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/list').reply(200, {
       documents: [
         {
@@ -186,7 +185,6 @@ describe('ListDocumentCard', () => {
       ],
     });
 
-    render(<ListDocumentCard />);
     const listButton = screen.getByText('List');
 
     act(() => {
@@ -202,8 +200,9 @@ describe('ListDocumentCard', () => {
   });
 
   it('should handle remove document error', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ListDocumentCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/list').reply(200, {
       documents: [
         {
@@ -222,13 +221,11 @@ describe('ListDocumentCard', () => {
         },
       ],
     });
-
     axiosMock.onPost('/api/documents/generate_document_link').reply(200, {
       LinkExpireTime: '2022-07-29T03:45:49.590126900Z',
       Link: 'https://developolisstorage.blob.core.windows.net/developolisthumbnails/res/medium/1658925144.jpeg?sv=2019-07-07&sr=b&sig=ivJLiUThB9HY3iNE6XaePJjcWnd7D6EwYwe%2Fi%2FqvSC4%3D&st=2022-07-29T02%3A41%3A49Z&se=2022-07-30T02%3A46%3A49Z&sp=r&rscd=attachment%3B%20filename%3D1658925144.jpeg',
     });
 
-    render(<ListDocumentCard />);
     const listButton = screen.getByText('List');
 
     act(() => {
@@ -257,8 +254,9 @@ describe('ListDocumentCard', () => {
   });
 
   it('should sort the document', async () => {
-    const axiosMock = new MockAdapter(axios);
+    render(<ListDocumentCard />);
 
+    const axiosMock = new MockAdapter(axios);
     axiosMock.onPost('/api/documents/list').reply(200, {
       documents: [
         {
@@ -291,13 +289,11 @@ describe('ListDocumentCard', () => {
         },
       ],
     });
-
     axiosMock.onPost('/api/documents/generate_document_link').reply(200, {
       LinkExpireTime: '2022-07-29T03:45:49.590126900Z',
       Link: 'https://developolisstorage.blob.core.windows.net/developolisthumbnails/res/medium/1658925144.jpeg?sv=2019-07-07&sr=b&sig=ivJLiUThB9HY3iNE6XaePJjcWnd7D6EwYwe%2Fi%2FqvSC4%3D&st=2022-07-29T02%3A41%3A49Z&se=2022-07-30T02%3A46%3A49Z&sp=r&rscd=attachment%3B%20filename%3D1658925144.jpeg',
     });
-
-    render(<ListDocumentCard />);
+    
     const listButton = screen.getByText('List');
 
     act(() => {
