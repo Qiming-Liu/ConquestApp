@@ -3,7 +3,7 @@ import React from 'react';
 import { Grid, Container, Typography } from '@mui/material';
 
 // components
-import Page from '../theme/component/Page';
+import Page from '../theme/MinimalComponent/Page';
 import CreateRequestCard from '../components/Card/CreateRequestCard';
 import ImageAttachCard from '../components/Card/ImageAttachCard';
 

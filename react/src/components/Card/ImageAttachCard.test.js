@@ -6,7 +6,7 @@ import MockAdapter from 'axios-mock-adapter';
 import ImageAttachCard from '../Card/ImageAttachCard';
 import * as DocumentServices from '../../services/Document';
 
-describe('CreateRequestCard', () => {
+describe('ImageAttachCard', () => {
   afterEach(() => {
     localStorage.clear();
     jest.restoreAllMocks();
@@ -114,6 +114,8 @@ describe('CreateRequestCard', () => {
   });
 
   it('should handel error', async () => {
+    new MockAdapter(axios);
+
     const image = new File(['image file'], 'image.png', { type: 'image/png' });
 
     render(<ImageAttachCard />);

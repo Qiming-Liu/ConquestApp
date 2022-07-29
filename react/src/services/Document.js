@@ -28,22 +28,6 @@ export const removeDocument = (RequestID, DocumentID) =>
   });
 
 export const uploadBlob = (uploadUrl, uploadMethod, contentType, imgBlob) => {
-  // const data = new FormData();
-  // data.append('file', imgBlob);
-
-  console.log([
-    uploadUrl,
-    {
-      method: uploadMethod,
-      headers: {
-        'Content-Type': contentType,
-        'Access-Control-Allow-Origin': '*',
-        'x-ms-blob-type': 'BlockBlob',
-      },
-      body: imgBlob,
-    },
-  ]);
-
   return fetch(uploadUrl, {
     method: uploadMethod,
     headers: {

@@ -90,7 +90,8 @@
       "./src/setupTests.js"
     ],
     "collectCoverageFrom": [
-      "**/components/**"
+      "**/components/**",
+      "**/pages/**"
     ],
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/src/mock/styleMock.js"

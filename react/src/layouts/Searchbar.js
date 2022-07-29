@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener } from '@mui/material';
 // component
-import Iconify from '../theme/component/Iconify';
+import Iconify from '../theme/MinimalComponent/Iconify';
 
 // ----------------------------------------------------------------------
 

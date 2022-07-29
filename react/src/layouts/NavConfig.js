@@ -1,5 +1,5 @@
 // component
-import Iconify from '../theme/component/Iconify';
+import Iconify from '../theme/MinimalComponent/Iconify';
 
 // ----------------------------------------------------------------------
 

@@ -5,7 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 // components
 import ImgDropzone from '../ImgDropzone';
-import Iconify from '../../theme/component/Iconify';
+import Iconify from '../../theme/MinimalComponent/Iconify';
 
 // form
 import { useFormik } from 'formik';
@@ -49,12 +49,10 @@ export default function ImageAttachCard() {
       // get upload url
       addDocument(addDocumentBody(FileName, DocumentDescription, ContentType, values.RequestID))
         .then((response) => {
-          console.log(response);
           // upload via url
           // It's UploadUri here not UploadUrl
-          uploadBlob(response.data.UploadUri, response.data.UploadMethod, ContentType, imageBlob).then((response) => {
+          uploadBlob(response.data.UploadUri, response.data.UploadMethod, ContentType, imageBlob).then(() => {
             setLoading(false);
-            console.log(response);
             hotToast('success', `Attach Successed!`);
           });
         })
@@ -84,7 +82,7 @@ export default function ImageAttachCard() {
               value={formik.values.RequestID}
               variant="outlined"
             />
-            {image && (
+            {imageBlob && (
               <Box sx={{ m: 2 }}>
                 <img src={image} />
               </Box>
