@@ -9,13 +9,22 @@ describe('ImgDromzone', () => {
     jest.restoreAllMocks();
   });
 
+  it('should render', async () => {
+    const afterCropImg = () => {};
+    render(
+      <ImgDropzoneComponent accept="image/png" afterCrop={afterCropImg} aspectRatio={1}>
+        <div>Upload Image</div>
+      </ImgDropzoneComponent>
+    );
+  });
+
   it('should ok to upload image', async () => {
     const image = new File(['image file'], 'image.png', { type: 'image/png' });
 
-    const handleCropImg = () => {};
+    const afterCropImg = () => {};
 
     render(
-      <ImgDropzoneComponent accept="image/png" afterCrop={handleCropImg} lockAspectRatio={false}>
+      <ImgDropzoneComponent accept="image/png" afterCrop={afterCropImg} aspectRatio={1} lockAspectRatio={false}>
         <div>Upload Image</div>
       </ImgDropzoneComponent>
     );

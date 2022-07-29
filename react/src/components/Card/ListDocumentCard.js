@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // @mui
 import React, { useState } from 'react';
 import { Button, Zoom, Card, CardHeader, CardContent, TextField, Typography, Grid, Divider } from '@mui/material';

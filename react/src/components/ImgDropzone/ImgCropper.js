@@ -11,10 +11,11 @@ const ImgCropper = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getCropData: () => {
-      if (typeof cropper !== 'undefined') {
+      try {
         return cropper.getCroppedCanvas().toDataURL();
+      } catch (e) {
+        return '';
       }
-      return '';
     },
   }));
 

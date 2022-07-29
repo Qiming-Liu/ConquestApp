@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 import { forwardRef } from 'react';
 // @mui
 import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
+// const Page = forwardRef(({ children, title = '', meta, ...other }, ref) => (
 // eslint-disable-next-line react/display-name
-const Page = forwardRef(({ children, title = '', meta, ...other }, ref) => (
+const Page = forwardRef(({ children, ...other }, ref) => (
   <>
-    <Helmet>
+    {/* <Helmet>
       <title>{`${title} | Conquest`}</title>
       {meta}
-    </Helmet>
+    </Helmet> */}
 
     <Box ref={ref} {...other}>
       {children}

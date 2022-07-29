@@ -1,17 +1,25 @@
+import PropTypes from 'prop-types';
+// @mui
 import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
 import { Box } from '@mui/material';
-import ImgCropDialog from './ImgCropDialog';
-import hotToast from '../../utils/hotToast';
+import { useDropzone } from 'react-dropzone';
 
-// eslint-disable-next-line react/prop-types
-const ImgDropzone = ({ children, accept, afterCrop, aspectRatio, lockAspectRatio = true }) => {
+import ImgCropDialog from './ImgCropDialog';
+
+// ----------------------------------------------------------------------
+ImgDropzone.propTypes = {
+  children: PropTypes.node,
+  accept: PropTypes.string,
+  afterCrop: PropTypes.func,
+  aspectRatio: PropTypes.number,
+  lockAspectRatio: PropTypes.bool,
+};
+
+export default function ImgDropzone({ children, accept, afterCrop, aspectRatio, lockAspectRatio = true }) {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState('');
   const onDrop = useCallback(([file]) => {
     const reader = new FileReader();
-    reader.onabort = () => hotToast('fail', 'file reading was aborted');
-    reader.onerror = () => hotToast('fail', 'file reading has failed');
     reader.onload = () => {
       setImage(reader.result);
       setOpen(true);
@@ -37,13 +45,11 @@ const ImgDropzone = ({ children, accept, afterCrop, aspectRatio, lockAspectRatio
         DialogClose={() => {
           setOpen(false);
         }}
-        img={image}
+        image={image}
         afterCrop={afterCrop}
         aspectRatio={aspectRatio}
         lockAspectRatio={lockAspectRatio}
       />
     </>
   );
-};
-
-export default ImgDropzone;
+}

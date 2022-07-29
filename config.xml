@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.conquest.alan" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
+<widget id="app.conquest.alanliu" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ConquestApp Demo</name>
     <description>
@@ -10,9 +10,9 @@
     <allow-intent href="*"/>
     <allow-navigation href="*"/>
     <platform name="android">
-        <preference name="Fullscreen" value="true"/>
-        <preference name="AndroidLaunchMode" value="singleTask"/>
-        <preference name="LogLevel" value="DEBUG"/>
+        <!-- <preference name="Fullscreen" value="true"/> -->
+        <!-- <preference name="AndroidLaunchMode" value="singleTask"/>
+        <preference name="LogLevel" value="DEBUG"/> -->
         <!-- <icon background="www/img/logo.png" foreground="www/img/logo.png" density="ldpi"/>
         <icon background="www/img/logo.png" foreground="www/img/logo.png" density="mdpi"/>
         <icon background="www/img/logo.png" foreground="www/img/logo.png" density="hdpi"/>

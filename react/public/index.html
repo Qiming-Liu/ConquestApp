@@ -16,24 +16,11 @@
       rel="stylesheet"
     />
 
-    <!-- Using Local Font -->
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/fonts/index.css" />
-
-    <title>ConquestApp-React</title>
+    <title>ConquestApp</title>
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
-
-  <script>
-    document.addEventListener('deviceready', onDeviceReady, false);
-
-    function onDeviceReady() {
-      // Cordova is now initialized. Have fun!
-      console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-      document.getElementById('deviceready').classList.add('ready');
-    }
-  </script>
 </html>

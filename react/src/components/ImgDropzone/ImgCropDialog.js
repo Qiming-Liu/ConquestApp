@@ -1,30 +1,35 @@
+import PropTypes from 'prop-types';
+// @mui
 import React, { useRef } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import ImageCropper from './ImgCropper';
 
-// eslint-disable-next-line react/prop-types
-const ImgCropDialog = ({ open, DialogClose, img, afterCrop, aspectRatio, lockAspectRatio }) => {
+// ----------------------------------------------------------------------
+ImgCropDialog.propTypes = {
+  open: PropTypes.bool,
+  DialogClose: PropTypes.func,
+  image: PropTypes.string,
+  afterCrop: PropTypes.func,
+  aspectRatio: PropTypes.number,
+  lockAspectRatio: PropTypes.bool,
+};
+
+export default function ImgCropDialog({ open, DialogClose, image, afterCrop, aspectRatio, lockAspectRatio }) {
   const ImgCropRef = useRef();
+
+  const handleSave = () => {
+    DialogClose();
+    afterCrop(ImgCropRef.current.getCropData());
+  };
   return (
     <Dialog open={open} onClose={DialogClose}>
       <DialogTitle>Crop your picture</DialogTitle>
       <DialogContent>
-        <ImageCropper aspectRatio={aspectRatio} src={img} lockAspectRatio={lockAspectRatio} ref={ImgCropRef} />
+        <ImageCropper aspectRatio={aspectRatio} src={image} lockAspectRatio={lockAspectRatio} ref={ImgCropRef} />
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={() => {
-            DialogClose();
-            if (ImgCropRef.current) {
-              afterCrop(ImgCropRef.current.getCropData());
-            }
-          }}
-        >
-          Save
-        </Button>
+        <Button onClick={handleSave}>Save</Button>
       </DialogActions>
     </Dialog>
   );
-};
-
-export default ImgCropDialog;
+}
