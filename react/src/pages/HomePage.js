@@ -13,20 +13,21 @@ export default function HomePage() {
   return (
     <Page title="HomePage">
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mx: 1, mt: 3 }}>
+        <Typography variant="subtitle1" sx={{ mx: 2, mt: 3 }}>
           Hi, Welcome to ConquestApp!
         </Typography>
-        <Typography variant="h4" sx={{ mx: 1, mt: 3 }}>
+        <Typography variant="subtitle1" sx={{ mx: 2, my: 3 }}>
           Here you can create a request or attach a image to the request.
-        </Typography>
-        <Typography variant="h4" sx={{ mx: 1, mt: 1, mb: 3 }}>
-          In the navbar on the left, you can view all documents of a request.
         </Typography>
 
         <Grid container spacing={3}>
           <CreateRequestCard />
           <ImageAttachCard />
         </Grid>
+
+        <Typography variant="subtitle1" sx={{ mx: 2, my: 3 }}>
+          In the navbar on the left, you can view all documents of a request.
+        </Typography>
       </Container>
     </Page>
   );

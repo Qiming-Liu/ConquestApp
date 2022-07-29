@@ -14,11 +14,8 @@
         <preference name="Fullscreen" value="true"/>
         <preference name="AndroidLaunchMode" value="singleTask"/>
         <preference name="LogLevel" value="DEBUG"/>
-        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="ldpi"/>
-        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="mdpi"/>
-        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="hdpi"/>
-        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="xhdpi"/>
-        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="xxhdpi"/>
-        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="xxxhdpi"/>
+        <icon background="www/static/img/applogo.png" foreground="www/static/img/applogo.png" density="xhdpi"/>
+        <icon background="www/static/img/applogo.png" foreground="www/static/img/applogo.png" density="xxhdpi"/>
+        <icon background="www/static/img/applogo.png" foreground="www/static/img/applogo.png" density="xxxhdpi"/>
     </platform>
 </widget>

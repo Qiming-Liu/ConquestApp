@@ -11,7 +11,7 @@ export default function DocumentPage() {
   return (
     <Page title="DocumentPage">
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mx: 1, mb: 3 }}>
+        <Typography variant="subtitle1" sx={{ mx: 2, mb: 3 }}>
           Here you can list all the documents in a request.
         </Typography>
 

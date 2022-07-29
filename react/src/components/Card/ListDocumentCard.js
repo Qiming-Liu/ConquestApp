@@ -119,7 +119,7 @@ export default function ListDocumentCard() {
       </Card>
       {did && (
         <div data-testid="image-list">
-          <Divider sx={{ mt: 2 }} />
+          <Divider sx={{ mt: 3 }} />
           {imageList.length > 0 ? (
             <>
               {[]
@@ -136,18 +136,17 @@ export default function ListDocumentCard() {
                           style={{
                             display: 'block',
                             margin: '0 auto',
-                            maxWidth: '90%',
-                            maxHeight: '90%',
+                            maxWidth: '100%',
+                            maxHeight: '100%',
                           }}
                         />
-
-                        <Typography variant="h5" sx={{ mt: 2 }}>
-                          CreatedBy: {image.Document.CreatedBy}
+                        <Typography variant="subtitle2" sx={{ mt: 3 }}>
+                          Order: {image.Document.Order}
                         </Typography>
-                        <Typography variant="h5">DocumentID: {image.Document.DocumentID}</Typography>
-                        <Typography variant="h5">Order: {image.Document.Order}</Typography>
+                        <Typography variant="subtitle2">DocumentID: {image.Document.DocumentID}</Typography>
+                        <Typography variant="subtitle2">CreatedBy: {image.Document.CreatedBy}</Typography>
                         <Button
-                          sx={{ mt: 2 }}
+                          sx={{ mt: 3 }}
                           color="primary"
                           fullWidth
                           size="large"
@@ -175,7 +174,7 @@ export default function ListDocumentCard() {
                 ))}
             </>
           ) : (
-            <Typography variant="h5" sx={{ mx: 1, mt: 2, textAlign: 'center' }}>
+            <Typography variant="h6" sx={{ mx: 2, mt: 3, textAlign: 'center' }}>
               No Documents.
             </Typography>
           )}

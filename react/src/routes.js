@@ -12,6 +12,7 @@ export default function Router() {
       path: '/',
       element: <Layout />,
       children: [
+        { path: '/', element: <HomePage /> },
         { path: '*', element: <HomePage /> },
         { path: 'document', element: <DocumentPage /> },
       ],
