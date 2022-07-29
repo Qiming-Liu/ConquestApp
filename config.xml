@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.conquest.alanliu" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
-        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="app.conquest.alan" version="1.0.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ConquestApp Demo</name>
     <description>
         by Alan Liu
@@ -10,14 +11,14 @@
     <allow-intent href="*"/>
     <allow-navigation href="*"/>
     <platform name="android">
-        <!-- <preference name="Fullscreen" value="true"/> -->
-        <!-- <preference name="AndroidLaunchMode" value="singleTask"/>
-        <preference name="LogLevel" value="DEBUG"/> -->
-        <!-- <icon background="www/img/logo.png" foreground="www/img/logo.png" density="ldpi"/>
-        <icon background="www/img/logo.png" foreground="www/img/logo.png" density="mdpi"/>
-        <icon background="www/img/logo.png" foreground="www/img/logo.png" density="hdpi"/>
-        <icon background="www/img/logo.png" foreground="www/img/logo.png" density="xhdpi"/>
-        <icon background="www/img/logo.png" foreground="www/img/logo.png" density="xxhdpi"/>
-        <icon background="www/img/logo.png" foreground="www/img/logo.png" density="xxxhdpi"/> -->
+        <preference name="Fullscreen" value="true"/>
+        <preference name="AndroidLaunchMode" value="singleTask"/>
+        <preference name="LogLevel" value="DEBUG"/>
+        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="ldpi"/>
+        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="mdpi"/>
+        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="hdpi"/>
+        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="xhdpi"/>
+        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="xxhdpi"/>
+        <icon background="www/static/avatar.jpg" foreground="www/static/avatar.jpg" density="xxxhdpi"/>
     </platform>
 </widget>
