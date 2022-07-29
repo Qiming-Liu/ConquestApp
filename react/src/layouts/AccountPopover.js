@@ -4,9 +4,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
 // components
-import MenuPopover from '../components/MenuPopover';
-// mocks_
-import account from '../_mock/account';
+import MenuPopover from '../theme/component/MenuPopover';
+// mocks
+import account from '../mock/accountMock';
 
 // ----------------------------------------------------------------------
 

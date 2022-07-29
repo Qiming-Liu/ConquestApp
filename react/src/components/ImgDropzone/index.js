@@ -28,8 +28,8 @@ const ImgDropzone = ({ children, accept, afterCrop, aspectRatio, lockAspectRatio
 
   return (
     <>
-      <Box {...getRootProps()}>
-        <input {...getInputProps()} />
+      <Box {...getRootProps()} data-testid="img-dropzone-parent">
+        <input {...getInputProps()} id="img-input" />
         {children}
       </Box>
       <ImgCropDialog

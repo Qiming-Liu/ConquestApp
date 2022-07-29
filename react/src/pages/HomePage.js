@@ -3,15 +3,15 @@ import React from 'react';
 import { Grid, Container, Typography } from '@mui/material';
 
 // components
-import Page from '../components/Page';
+import Page from '../theme/component/Page';
 import CreateRequestCard from '../components/Card/CreateRequestCard';
 import ImageAttachCard from '../components/Card/ImageAttachCard';
 
 // ----------------------------------------------------------------------
 
-export default function Index() {
+export default function HomePage() {
   return (
-    <Page title="Index">
+    <Page title="HomePage">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mx: 1, mt: 3 }}>
           Hi, Welcome to ConquestApp!

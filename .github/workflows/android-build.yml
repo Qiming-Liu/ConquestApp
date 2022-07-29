@@ -1,7 +1,7 @@
 name: Android Build
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
         run: |
           cd react
           yarn
-          yarn test
+          yarn test:all
           yarn build
       - name: Setup Cordova
         uses: oxr463/setup-cordova@0.0.3
@@ -25,3 +25,8 @@ jobs:
             cordova platform add android && \
             cordova build --no-telemetry && \
             cp "$(find . -name '*.apk')" .
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ConquestApp
+          path: /github/workspace/platforms/android/app/build/outputs/apk/debug/app-debug.apk

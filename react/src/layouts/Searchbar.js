@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener } from '@mui/material';
 // component
-import Iconify from '../components/Iconify';
+import Iconify from '../theme/component/Iconify';
 
 // ----------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ const SearchbarStyle = styled('div')(({ theme }) => ({
   alignItems: 'center',
   height: APPBAR_MOBILE,
   backdropFilter: 'blur(6px)',
-  WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
+  WebkitBackdropFilter: 'blur(6px)',
   padding: theme.spacing(0, 3),
   boxShadow: theme.customShadows.z8,
   backgroundColor: `${alpha(theme.palette.background.default, 0.72)}`,

@@ -3,8 +3,8 @@ import React from 'react';
 import { Grid, Container, Typography } from '@mui/material';
 
 // components
-import Page from '../components/Page';
-import ListDocument from '../components/Card/ListDocument';
+import Page from '../theme/component/Page';
+import ListDocumentCard from '../components/Card/ListDocumentCard';
 // ----------------------------------------------------------------------
 
 export default function DocumentPage() {
@@ -16,7 +16,7 @@ export default function DocumentPage() {
         </Typography>
 
         <Grid container spacing={3}>
-          <ListDocument />
+          <ListDocumentCard />
         </Grid>
       </Container>
     </Page>

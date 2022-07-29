@@ -20,7 +20,7 @@ import {
 
 // ----------------------------------------------------------------------
 
-export default function ListDocument() {
+export default function ListDocumentCard() {
   const [imageList, setImageList] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [did, setDid] = useState(false);
@@ -40,41 +40,45 @@ export default function ListDocument() {
           setImageList([]);
 
           const DocumentList = response.data.documents;
-          if (DocumentList.length === 0) {
+          if (!DocumentList) {
             setDid(true);
-          }
-          DocumentList.forEach((document, index) => {
-            getDocumentThumbnail(getDocumentThumbnailBody(values.RequestID, document.DocumentID))
-              .then((response) => {
-                setImageList((oldArray) => [
-                  ...oldArray,
-                  {
-                    RequestID: values.RequestID,
-                    Document: DocumentList[index],
-                    Link: response.data.Link,
-                  },
-                ]);
-                setDid(true);
-              })
-              .catch((error) => {
-                if (error.response.data.code === 3) {
+          } else {
+            DocumentList.forEach((document, index) => {
+              getDocumentThumbnail(getDocumentThumbnailBody(values.RequestID, document.DocumentID))
+                .then((response) => {
                   setImageList((oldArray) => [
                     ...oldArray,
                     {
                       RequestID: values.RequestID,
                       Document: DocumentList[index],
-                      Link: '',
+                      Link: response.data.Link,
                     },
                   ]);
-                } else {
-                  hotToast('error', `Something wrong: ${error.message}`);
-                }
-              });
-          });
+                  setDid(true);
+                })
+                .catch((error) => {
+                  if (error.response.data && error.response.data.code === 3) {
+                    setImageList((oldArray) => [
+                      ...oldArray,
+                      {
+                        RequestID: values.RequestID,
+                        Document: DocumentList[index],
+                        Link: '',
+                      },
+                    ]);
+                  } else {
+                    hotToast('error', `Something wrong: ${error.message}`);
+                    localStorage.setItem('listDocument', error.message);
+                  }
+                  setDid(true);
+                });
+            });
+          }
         })
         .catch((error) => {
           setLoading(false);
           hotToast('error', `Something wrong: ${error.message}`);
+          localStorage.setItem('listDocument', error.message);
         });
     },
   });
@@ -115,7 +119,7 @@ export default function ListDocument() {
         </CardContent>
       </Card>
       {did && (
-        <div>
+        <div data-testid="image-list">
           <Divider sx={{ mt: 2 }} />
           {imageList.length > 0 ? (
             <>
@@ -156,9 +160,11 @@ export default function ListDocument() {
                                 setImageList((oldArray) =>
                                   oldArray.filter((item) => item.Document.DocumentID !== image.Document.DocumentID)
                                 );
+                                localStorage.setItem('listDocument', [image.RequestID, image.Document.DocumentID]);
                               })
                               .catch((error) => {
                                 hotToast('error', `Something wrong: ${error.message}`);
+                                localStorage.setItem('listDocument', error.message);
                               });
                           }}
                         >

@@ -1,5 +1,3 @@
-// ----------------------------------------------------------------------
-
 const account = {
   displayName: 'Alan Liu',
   email: 'alanliuqiming.work@gmail.com',

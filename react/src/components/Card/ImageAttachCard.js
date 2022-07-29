@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // @mui
 import React, { useState } from 'react';
 import { Box, Card, CardHeader, CardContent, TextField, Typography, Grid } from '@mui/material';
@@ -6,7 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 // components
 import ImgDropzone from '../ImgDropzone';
-import Iconify from '../Iconify';
+import Iconify from '../../theme/component/Iconify';
 
 // form
 import { useFormik } from 'formik';
@@ -25,7 +24,6 @@ export default function ImageAttachCard() {
 
   const handleCropImg = async (base64) => {
     setImage(base64);
-    console.log(base64);
     const file = await (await fetch(base64)).blob();
     setImageBlob(file);
   };
@@ -38,7 +36,7 @@ export default function ImageAttachCard() {
       RequestID: Yup.number().required('Request ID is required'),
     }),
     onSubmit: (values) => {
-      if (!image) {
+      if (!imageBlob) {
         hotToast('error', 'Please select an image');
         return;
       }
@@ -51,19 +49,14 @@ export default function ImageAttachCard() {
       // get upload url
       addDocument(addDocumentBody(FileName, DocumentDescription, ContentType, values.RequestID))
         .then((response) => {
+          console.log(response);
           // upload via url
           // It's UploadUri here not UploadUrl
-          uploadBlob(response.data.UploadUri, response.data.UploadMethod, ContentType, imageBlob)
-            .then((response) => {
-              setLoading(false);
-              console.log(response);
-              hotToast('success', `Attach Successed!`);
-            })
-            .catch((error) => {
-              setLoading(false);
-              console.log(error);
-              hotToast('error', `Attach Failed: ${error.message}`);
-            });
+          uploadBlob(response.data.UploadUri, response.data.UploadMethod, ContentType, imageBlob).then((response) => {
+            setLoading(false);
+            console.log(response);
+            hotToast('success', `Attach Successed!`);
+          });
         })
         .catch((error) => {
           setLoading(false);
