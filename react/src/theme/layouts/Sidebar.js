@@ -5,7 +5,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
 // mock
-import account from '../../../mock/accountMock';
+import account from '../../mock/accountMock';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components

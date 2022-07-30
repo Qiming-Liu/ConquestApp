@@ -96,7 +96,7 @@
       "**/utils/**"
     ],
     "moduleNameMapper": {
-      "\\.(css)$": "<rootDir>/mock/styleMock.js"
+      "\\.(css)$": "<rootDir>/src/mock/styleMock.js"
     }
   },
   "babel": {

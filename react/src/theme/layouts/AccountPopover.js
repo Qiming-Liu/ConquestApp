@@ -6,7 +6,7 @@ import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@
 // components
 import MenuPopover from '../MinimalComponent/MenuPopover';
 // mocks
-import account from '../../../mock/accountMock';
+import account from '../../mock/accountMock';
 
 // ----------------------------------------------------------------------
 
