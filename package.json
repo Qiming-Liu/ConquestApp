@@ -7,6 +7,12 @@
   "keywords": [
     "ecosystem:cordova"
   ],
+  "scripts": {
+    "prepare": "cordova platform add android",
+    "start": "yarn build && cordova run android",
+    "build": "cd react && yarn && yarn build",
+    "test": "cd react && yarn && yarn test:all"
+  },
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {

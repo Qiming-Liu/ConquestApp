@@ -3,6 +3,7 @@
   "author": "alanliuqiming",
   "version": "1.0.0",
   "homepage": "./",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf ../www/* && react-scripts build",
