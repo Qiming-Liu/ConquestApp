@@ -4,7 +4,7 @@ import axios from 'axios';
 const backendHttpInstance = () => {
   const axiosInstance = axios.create();
   axiosInstance.defaults.baseURL = process.env.REACT_APP_CONQUEST_SERVER_URL;
-  axiosInstance.defaults.headers.common.Authorization = process.env.REACT_APP_CONQUEST_ACCESS_TOKEN;
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${process.env.REACT_APP_CONQUEST_ACCESS_TOKEN}`;
 
   axiosInstance.interceptors.response.use(
     (config) => {
