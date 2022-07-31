@@ -28,6 +28,13 @@
 
 ### Github Actions
 
+### Environment Variables
+Add 2 lines:
+```
+REACT_APP_CONQUEST_ACCESS_TOKEN=<ACCESS_TOKEN>
+REACT_APP_CONQUEST_SERVER_URL=<BACKEND_URL>
+```
+
 ## How to run
 ```
 $ npm install -g cordova
