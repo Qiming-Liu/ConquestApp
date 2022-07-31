@@ -34,7 +34,6 @@ export default function CreateRequestCard() {
         .then((response) => {
           setLoading(false);
           hotToast('success', `Create Successed! Request ID: ${response.data}`);
-          console.log(response.data);
           localStorage.setItem('createRequest', response.data);
         })
         .catch((error) => {

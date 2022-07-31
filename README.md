@@ -25,11 +25,10 @@
 </table>
 
 ## CI/CD Pipeline
+Github Actions
 
-### Github Actions
-
-### Environment Variables
-Add 2 lines:
+## Environment Variables
+Add 2 lines to `react/.env`
 ```
 REACT_APP_CONQUEST_ACCESS_TOKEN=<ACCESS_TOKEN>
 REACT_APP_CONQUEST_SERVER_URL=<BACKEND_URL>

@@ -26,7 +26,7 @@ export default function HomePage() {
         </Grid>
 
         <Typography variant="subtitle1" sx={{ mx: 2, my: 3 }}>
-          In the navbar on the left, you can view all documents of a request.
+          In the Navbar on the left, you can view all documents of a request.
         </Typography>
       </Container>
     </Page>

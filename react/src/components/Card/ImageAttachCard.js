@@ -22,7 +22,7 @@ export default function ImageAttachCard() {
   const [imageBlob, setImageBlob] = useState(undefined);
   const [isLoading, setLoading] = useState(false);
 
-  const handleCropImg = async (base64) => {
+  const afterCropImg = async (base64) => {
     setImage(base64);
     const file = await (await fetch(base64)).blob();
     setImageBlob(file);
@@ -50,7 +50,6 @@ export default function ImageAttachCard() {
       addDocument(addDocumentBody(FileName, DocumentDescription, ContentType, values.RequestID))
         .then((response) => {
           // upload via url
-          // It's UploadUri here not UploadUrl
           uploadBlob(response.data.UploadUri, response.data.UploadMethod, ContentType, imageBlob).then(() => {
             setLoading(false);
             hotToast('success', `Attach Successed!`);
@@ -88,7 +87,13 @@ export default function ImageAttachCard() {
               </Box>
             )}
             <Box sx={{ mt: 2 }}>
-              <ImgDropzone accept="image/png" afterCrop={handleCropImg} lockAspectRatio={false}>
+              <ImgDropzone
+                accept={{
+                  'image/*': ['.png', '.jpeg', '.jpg'],
+                }}
+                afterCrop={afterCropImg}
+                lockAspectRatio={false}
+              >
                 <Box
                   sx={{
                     alignItems: 'center',

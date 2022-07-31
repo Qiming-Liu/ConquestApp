@@ -37,7 +37,7 @@ export default function ImgDropzone({ children, accept, afterCrop, aspectRatio, 
   return (
     <>
       <Box {...getRootProps()} data-testid="img-dropzone-parent">
-        <input {...getInputProps()} id="img-input" />
+        <input {...getInputProps()} />
         {children}
       </Box>
       <ImgCropDialog
