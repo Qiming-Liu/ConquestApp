@@ -27,3 +27,11 @@
 ## CI/CD Pipeline
 
 ### Github Actions
+
+## How to run
+```
+$ npm install -g cordova
+$ yarn prepare
+$ yarn test
+$ yarn start
+```
