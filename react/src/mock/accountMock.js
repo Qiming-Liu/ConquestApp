@@ -1,7 +1,7 @@
 const account = {
   displayName: 'Alan Liu',
   email: 'alanliuqiming.work@gmail.com',
-  photoURL: './static/img/avatar.jpg',
+  photoURL: 'https://github.com/Qiming-Liu/ConquestApp/raw/main/react/public/static/img/avatar.jpg',
 };
 
 export default account;
